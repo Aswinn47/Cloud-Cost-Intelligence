@@ -26,7 +26,6 @@
 
 
 
-# Cloud Cost Intelligence Platform for Supply Chain
 
 A beginner-friendly, industry-standard project for analyzing and visualizing cloud billing data in a supply-chain context.
 
