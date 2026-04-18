@@ -198,6 +198,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<div align="center">
-  Made with ❤️ by an enthusiast
-</div>
