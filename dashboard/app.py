@@ -20,6 +20,7 @@
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.express as px
@@ -198,19 +199,25 @@ def load_data():
 
     # ── Cleaning ──────────────────────────────────────
     df.drop_duplicates(inplace=True)
-    df.replace("", pd.NA, inplace=True)
 
+    # Replace empty strings and whitespace-only values with NaN
+    df.replace(r"^\s*$", np.nan, regex=True, inplace=True)
+    df.replace("", np.nan, inplace=True)
+
+    # Fill missing categorical columns with mode
     for col in ["Service_Type", "Region", "Cost_Category", "Department"]:
-        if col in df.columns and df[col].isna().any():
-            df[col].fillna(df[col].mode()[0], inplace=True)
+        if col in df.columns:
+            df[col] = df[col].fillna(df[col].mode().iloc[0] if not df[col].mode().empty else "Unknown")
+            df[col] = df[col].astype(str)  # guarantee string dtype
 
     df["Cost_USD"] = pd.to_numeric(df["Cost_USD"], errors="coerce")
-    df["Cost_USD"].fillna(df["Cost_USD"].median(), inplace=True)
+    df["Cost_USD"] = df["Cost_USD"].fillna(df["Cost_USD"].median())
 
     df["Usage_Hours"] = pd.to_numeric(df["Usage_Hours"], errors="coerce")
-    df["Usage_Hours"].fillna(df["Usage_Hours"].median(), inplace=True)
+    df["Usage_Hours"] = df["Usage_Hours"].fillna(df["Usage_Hours"].median())
 
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+    df.dropna(subset=["Date"], inplace=True)  # drop rows with unparseable dates
     df["Month"]      = df["Date"].dt.month
     df["Month_Name"] = df["Date"].dt.strftime("%b")
     df["Quarter"]    = df["Date"].dt.quarter
@@ -265,8 +272,8 @@ with st.sidebar:
     )
 
     # ── Month ───────────────────────────────────────────────
-    all_months = sorted(df["Month"].unique())
-    month_map  = {m: pd.Timestamp(2024, m, 1).strftime("%B") for m in all_months}
+    all_months = sorted(df["Month"].dropna().unique())
+    month_map  = {m: pd.Timestamp(2024, int(m), 1).strftime("%B") for m in all_months}
     selected_months = st.multiselect(
         "Month",
         options=all_months,
@@ -276,7 +283,7 @@ with st.sidebar:
     )
 
     # ── Service Type ────────────────────────────────────────
-    all_services = sorted(df["Service_Type"].unique())
+    all_services = sorted(df["Service_Type"].dropna().unique())
     selected_services = st.multiselect(
         "Service Type",
         options=all_services,
@@ -285,7 +292,7 @@ with st.sidebar:
     )
 
     # ── Region ──────────────────────────────────────────────
-    all_regions = sorted(df["Region"].unique())
+    all_regions = sorted(df["Region"].dropna().unique())
     selected_regions = st.multiselect(
         "Region",
         options=all_regions,
@@ -294,7 +301,7 @@ with st.sidebar:
     )
 
     # ── Department ──────────────────────────────────────────
-    all_depts = sorted(df["Department"].unique())
+    all_depts = sorted(df["Department"].dropna().unique())
     selected_depts = st.multiselect(
         "Department",
         options=all_depts,
