@@ -166,7 +166,7 @@ Your browser will automatically open to `http://localhost:8501`.
 <details open>
 <summary><strong>Dashboard Overview</strong></summary>
 
-> ![Dashboard Screenshot](https://via.placeholder.com/1000x500.png?text=Dashboard+Overview+Screenshot)
+> ![Dashboard Screenshot](assets/dashboard1.png)
 > *Interactive filters and high-level KPIs*
 
 </details>
@@ -174,7 +174,7 @@ Your browser will automatically open to `http://localhost:8501`.
 <details>
 <summary><strong>Cost Optimization & Anomalies</strong></summary>
 
-> ![Optimization Screenshot](https://via.placeholder.com/1000x500.png?text=Cost+Optimization+Insights)
+> ![Optimization Screenshot](assets/optimization.png)
 > *Identifying top cost drivers and detecting unusual spending spikes*
 
 </details>
