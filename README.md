@@ -8,6 +8,9 @@
 [![Plotly](https://img.shields.io/badge/Plotly-5.18%2B-3F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com/python/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cloud-cost-intelligence-aswinn47.streamlit.app)
+
+
 **A beginner-friendly, industry-standard project for analyzing and visualizing cloud billing data in a supply-chain context.**
 
 [Explore the Dashboard](#-live-dashboard) · [Report Bug](https://github.com/your-username/Cloud-Cost-Intelligence/issues) · [Request Feature](https://github.com/your-username/Cloud-Cost-Intelligence/issues)
