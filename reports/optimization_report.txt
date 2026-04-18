@@ -1,0 +1,25 @@
+CLOUD COST OPTIMIZATION REPORT - 2024
+==================================================
+
+Total Cloud Spend: $396,097.19
+Average Daily Spend: $1,082.23
+Cost Spike Days: 14
+
+HIGH-COST SERVICES
+------------------------------
+  EKS (Kubernetes): $65,863.49
+  SageMaker (ML): $59,892.45
+  EC2 (Compute): $56,636.72
+  RDS (Database): $51,603.44
+  Redshift (Data Warehouse): $46,708.72
+  DynamoDB (NoSQL): $28,461.26
+
+RECOMMENDATIONS
+------------------------------
+  1. [Reserved Instances] Convert top On-Demand workloads to Reserved -> save ~$30,571
+  2. [Auto-scaling] Enable auto-scaling for EC2/EKS to match demand patterns
+  3. [Idle Resources] Audit resources with < 2 hrs/day usage for possible termination
+  4. [Storage Tiering] Move infrequently accessed S3 data to S3 Glacier (up to 68% cheaper)
+  5. [Right-sizing] Downsize over-provisioned instances based on actual CPU/memory usage
+  6. [Spot Instances] Use Spot for batch processing and non-critical supply-chain analytics
+  7. [Monitoring] Set up CloudWatch billing alerts at 80% and 100% of monthly budget
