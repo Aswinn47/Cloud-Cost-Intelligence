@@ -18,9 +18,6 @@
 """
 
 import os
-# Auto-generate data if it doesn't exist (for cloud deployment)
-if not os.path.exists("data/cloud_billing_2024.csv"):
-    import generate_data  # runs the generator automatically
 import sys
 
 import pandas as pd
@@ -42,6 +39,16 @@ SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 DATA_PATH    = os.path.join(PROJECT_ROOT, "data", "cloud_billing_2024.csv")
 REPORTS_DIR  = os.path.join(PROJECT_ROOT, "reports")
+
+# ── Auto-generate data if not present (Streamlit Cloud) ─────
+if not os.path.exists(DATA_PATH):
+    os.makedirs(os.path.join(PROJECT_ROOT, "data"), exist_ok=True)
+    sys.path.insert(0, PROJECT_ROOT)
+    try:
+        import generate_data  # noqa: F401 – runs the generator as a side-effect
+    except Exception as _gen_err:
+        st.error(f"Could not generate sample data: {_gen_err}")
+        st.stop()
 
 
 # ── Custom CSS for premium dark look ────────────────────────
@@ -180,6 +187,9 @@ hr {
 @st.cache_data
 def load_data():
     """Load and preprocess the billing CSV."""
+    if not os.path.exists(DATA_PATH):
+        return None
+
     df = pd.read_csv(DATA_PATH)
 
     # Basic cleaning (mirrors analysis.py logic)
@@ -205,6 +215,10 @@ def load_data():
 
 
 df = load_data()
+
+if df is None or df.empty:
+    st.error("⚠️ Data file not found. Please ensure `data/cloud_billing_2024.csv` exists or run `generate_data.py` first.")
+    st.stop()
 
 # ── Plotly Theme ────────────────────────────────────────────
 PLOTLY_LAYOUT = dict(
