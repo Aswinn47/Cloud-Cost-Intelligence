@@ -40,15 +40,9 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 DATA_PATH    = os.path.join(PROJECT_ROOT, "data", "cloud_billing_2024.csv")
 REPORTS_DIR  = os.path.join(PROJECT_ROOT, "reports")
 
-# ── Auto-generate data if not present (Streamlit Cloud) ─────
-if not os.path.exists(DATA_PATH):
-    os.makedirs(os.path.join(PROJECT_ROOT, "data"), exist_ok=True)
+# Add project root to path so generate_data can be imported
+if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
-    try:
-        import generate_data  # noqa: F401 – runs the generator as a side-effect
-    except Exception as _gen_err:
-        st.error(f"Could not generate sample data: {_gen_err}")
-        st.stop()
 
 
 # ── Custom CSS for premium dark look ────────────────────────
@@ -186,13 +180,23 @@ hr {
 # ── Data Loading ────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    """Load and preprocess the billing CSV."""
-    if not os.path.exists(DATA_PATH):
-        return None
+    """
+    Load billing data from CSV if it exists, otherwise generate it
+    in-memory directly (handles Streamlit Cloud read-only filesystem).
+    """
+    if os.path.exists(DATA_PATH):
+        df = pd.read_csv(DATA_PATH)
+    else:
+        # Streamlit Cloud: /mount/src/ is read-only, so generate in-memory
+        try:
+            from generate_data import generate_billing_data
+            rows = generate_billing_data()
+            df = pd.DataFrame(rows)
+        except Exception as e:
+            st.error(f"⚠️ Failed to generate data: {e}")
+            return None
 
-    df = pd.read_csv(DATA_PATH)
-
-    # Basic cleaning (mirrors analysis.py logic)
+    # ── Cleaning ──────────────────────────────────────
     df.drop_duplicates(inplace=True)
     df.replace("", pd.NA, inplace=True)
 
@@ -217,7 +221,7 @@ def load_data():
 df = load_data()
 
 if df is None or df.empty:
-    st.error("⚠️ Data file not found. Please ensure `data/cloud_billing_2024.csv` exists or run `generate_data.py` first.")
+    st.error("⚠️ Could not load or generate data. Check logs for details.")
     st.stop()
 
 # ── Plotly Theme ────────────────────────────────────────────
