@@ -172,6 +172,16 @@ def save_csv(rows: list[dict], path: str) -> None:
 
 
 # ── Main ────────────────────────────────────────────────────
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_OUTPUT_PATH = os.path.join(_SCRIPT_DIR, "data", "cloud_billing_2024.csv")
+
 if __name__ == "__main__":
     data = generate_billing_data()
-    save_csv(data, os.path.join("data", "cloud_billing_2024.csv"))
+    save_csv(data, _OUTPUT_PATH)
+else:
+    # When imported as a module (e.g., from app.py on Streamlit Cloud),
+    # auto-generate the data file if it doesn't already exist.
+    if not os.path.exists(_OUTPUT_PATH):
+        data = generate_billing_data()
+        save_csv(data, _OUTPUT_PATH)
+
