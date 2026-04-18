@@ -161,7 +161,6 @@ Your browser will automatically open to `http://localhost:8501`.
 
 ## 📸 Screenshots
 
-*(Replace the placeholder links below with actual screenshots of your dashboard once uploaded to GitHub)*
 
 <details open>
 <summary><strong>Dashboard Overview</strong></summary>
