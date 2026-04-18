@@ -18,6 +18,9 @@
 """
 
 import os
+# Auto-generate data if it doesn't exist (for cloud deployment)
+if not os.path.exists("data/cloud_billing_2024.csv"):
+    import generate_data  # runs the generator automatically
 import sys
 
 import pandas as pd
