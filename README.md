@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☁️ Cloud Cost Intelligence Platform
+# ☁️ Cloud Cost Intelligence Platform for Supply Chain
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-FF4B4B.svg?style=for-the-badge&logo=Streamlit&logoColor=white)](https://streamlit.io)
