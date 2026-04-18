@@ -77,6 +77,7 @@ Understanding cloud cost is a critical skill for modern DevOps and Data professi
 
 ```bash
 Cloud-Cost-Intelligence/
+├── 📁 assets/                # Screenshots and images for documentation
 ├── 📁 data/                  # Raw and processed billing data 
 ├── 📁 notebooks/             # Data analysis scripts (analysis.py)
 ├── 📁 dashboard/             # Streamlit application files (app.py)
@@ -197,3 +198,5 @@ Contributions are what make the open-source community such an amazing place to l
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
+
+
