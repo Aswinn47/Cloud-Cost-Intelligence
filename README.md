@@ -13,7 +13,7 @@
 
 **A beginner-friendly, industry-standard project for analyzing and visualizing cloud billing data in a supply-chain context.**
 
-[Explore the Dashboard](#-live-dashboard) · [Report Bug](https://github.com/your-username/Cloud-Cost-Intelligence/issues) · [Request Feature](https://github.com/your-username/Cloud-Cost-Intelligence/issues)
+[Report Bug](https://github.com/aswinn47/Cloud-Cost-Intelligence/issues) · [Request Feature](https://github.com/aswinn47/Cloud-Cost-Intelligence/issues)
 
 </div>
 
