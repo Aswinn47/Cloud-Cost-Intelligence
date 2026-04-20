@@ -168,7 +168,7 @@ Your browser will automatically open to `http://localhost:8501`.
 <details open>
 <summary><strong>Dashboard Overview</strong></summary>
 
-> ![Dashboard Screenshot](assets/dashboard1.png)
+> ![Dashboard Screenshot](assets/dashboard.png)
 > *Interactive filters and high-level KPIs*
 
 </details>
