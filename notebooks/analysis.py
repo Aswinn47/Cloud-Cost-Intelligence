@@ -29,7 +29,10 @@ import matplotlib.ticker as mticker
 warnings.filterwarnings("ignore")
 
 # ── Paths ───────────────────────────────────────────────────
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+try:
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+except NameError:
+    PROJECT_ROOT = os.path.dirname(os.getcwd())
 DATA_PATH    = os.path.join(PROJECT_ROOT, "data", "cloud_billing_2024.csv")
 CHARTS_DIR   = os.path.join(PROJECT_ROOT, "outputs", "charts")
 REPORTS_DIR  = os.path.join(PROJECT_ROOT, "reports")
