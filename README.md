@@ -80,15 +80,23 @@ Understanding cloud cost is a critical skill for modern DevOps and Data professi
 
 ```bash
 Cloud-Cost-Intelligence/
-├── 📁 assets/                # Screenshots and images for documentation
-├── 📁 data/                  # Raw and processed billing data 
-├── 📁 notebooks/             # Data analysis scripts (analysis.py)
-├── 📁 dashboard/             # Streamlit application files (app.py)
-├── 📁 outputs/               # Auto-generated PNG charts and graphs
-├── 📁 reports/               # Auto-generated CSV / Excel summaries
-├── 📄 generate_data.py       # Script to generate synthetic billing data
-├── 📄 requirements.txt       # Project dependencies
-└── 📄 README.md              # Project documentation
+├── assets/                 # Screenshots for documentation
+├── dashboard/
+│   └── app.py              # Streamlit dashboard
+├── data/
+│   └── cloud_billing_2024.csv  # Generated dataset (~3,300 records)
+├── docs/
+│   ├── HLD.docx            # High-Level Design document
+│   └── LLD.docx            # Low-Level Design document
+├── notebooks/
+│   ├── analysis.py         # Analysis pipeline 
+│   └── Cloud-Cost-Intelligence-Platform.ipynb
+├── outputs/
+│   └── charts/             # 7 auto-generated PNG charts
+├── reports/                # CSV, Excel, and text reports
+├── generate_data.py        # Synthetic data generator 
+├── requirements.txt        # Python dependencies
+└── README.md               # GitHub documentation
 ```
 
 ---
