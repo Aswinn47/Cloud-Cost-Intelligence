@@ -109,6 +109,8 @@ Follow these steps to get a local copy up and running.
 
 Ensure you have Python 3.10 or higher installed. You can download it from [python.org](https://python.org).
 
+![Top language](https://img.shields.io/github/languages/top/aswinn47/Cloud-Cost-Intelligence)
+
 ### Installation
 
 1. **Clone the repository** (if applicable):
